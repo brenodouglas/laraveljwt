@@ -42,7 +42,7 @@ php artisan vendor:publish
 
 To protect your routes, you can use the built-in middlewares.
 
-#### Verify token and regenerate new token: auth:jwt
+#### Verify token and regenerate new token in get or header with key 'access-token' : authjwt
 
 ```php
 Route::get('foo', ['middleware' => ['authjwt'], function()
@@ -55,3 +55,38 @@ Or within controllers:
 ```php
 $this->middleware('auth:jwt');
 ```
+
+### 5. Auth and Facade
+
+Register facade and use Jwt authentication.
+Just update your `config/app.php` file adding the following code at the end of your `'aliases'` section:
+
+```php
+// file START ommited
+    'aliases' => [
+        // other providers ommited
+       'JWT' => \LaravelJwt\Facades\JwtAuthFacade::class
+    ],
+// file END ommited
+```
+One example route auth and protected route with jwt:
+
+```php
+Route::post("auth", function(\Illuminate\Http\Request $request) {
+    return response()->json(['token'=> \JWT::authenticate($request)]);
+});
+
+Route::group(['middleware' => ['authjwt']], function($router) {
+    $router->get('users', function() {
+        return 'Yes, a can!';
+    });
+});
+```
+
+Send POST for 'auth' route with raw body json:
+{
+    "email": "email@foryouruser.com",
+    "password": "password"
+}
+
+The return is json with a key 'token'.
