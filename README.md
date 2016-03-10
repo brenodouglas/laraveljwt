@@ -84,9 +84,12 @@ Route::group(['middleware' => ['authjwt']], function($router) {
 ```
 
 Send POST for 'auth' route with raw body json:
+
+```json
 {
     "email": "email@foryouruser.com",
     "password": "password"
 }
+```
 
 The return is json with a key 'token'.
