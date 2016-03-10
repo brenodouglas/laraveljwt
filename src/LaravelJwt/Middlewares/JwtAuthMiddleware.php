@@ -7,6 +7,7 @@ use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\ValidationData;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Builder;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class JwtAuthMiddleware
 {
