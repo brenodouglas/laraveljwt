@@ -11,7 +11,7 @@ class JwtProvider extends ServiceProvider
     public function boot()
     {
         $router = $this->app['router'];
-        $router->middleware('auth:jwt', JwtAuthMiddleware::class);
+        $router->middleware('authjwt', JwtAuthMiddleware::class);
 
         $this->publishConfig();
     }
