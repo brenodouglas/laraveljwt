@@ -45,7 +45,7 @@ To protect your routes, you can use the built-in middlewares.
 #### Verify token and regenerate new token: auth:jwt
 
 ```php
-Route::get('foo', ['middleware' => [auth:jwt'], function()
+Route::get('foo', ['middleware' => ['auth:jwt'], function()
 {
     return 'Yes I can!';
 }]);
