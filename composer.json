@@ -1,0 +1,28 @@
+{
+  "name": "brenodouglas/laraveljwt",
+  "description": "Package Jwt Laravel",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Breno Douglas",
+      "email": "bdouglasans@gmail.com"
+    }
+  ],
+  "require": {
+    "lcobucci/jwt": "^3.1",
+    "illuminate/contracts": "^5.2",
+    "illuminate/support": "^5.2",
+    "illuminate/http": "^5.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "LaravelJwt": [
+        "src/LaravelJwt",
+        "tests/LaravelJwt"
+      ]
+    }
+  }
+}
