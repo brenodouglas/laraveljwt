@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "LaravelJwt//": [
+      "LaravelJwt\\": [
         "src/LaravelJwt",
         "tests/LaravelJwt"
       ]
