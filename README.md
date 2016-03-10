@@ -64,7 +64,7 @@ Just update your `config/app.php` file adding the following code at the end of y
 ```php
 // file START ommited
     'aliases' => [
-        // other providers ommited
+        // other aliases ommited
        'JWT' => \LaravelJwt\Facades\JwtAuthFacade::class
     ],
 // file END ommited
