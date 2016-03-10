@@ -1,5 +1,4 @@
 <?php
-
 /**
  * LaravelJwt - Laravel JWT Package
  * Author: Breno Douglas
@@ -11,6 +10,9 @@ return [
      */
     'expires' => 3600,
 
+    /**
+     * Time in seconds to refresh token after claim jit is create
+     */
     'refresh_time' => 3000,
 
     /**
