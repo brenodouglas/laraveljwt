@@ -45,16 +45,12 @@ class JwtAuthMiddleware
 
             putenv("USER=" . $token->getClaim('uid'));
 
-            return $next($request);
+            $response = $next($request);
         } catch (\Exception $e) {
             return response('Unauthorized: ' . $e->getMessage(), 403);
         }
-    }
 
-    public function terminate($request, $response)
-    {
-        $key = config('jwt.key');
-        $signer = new Sha256();
+
         $token = (new Builder())->setIssuer(config('jwt.host'))
             ->setAudience($request->server('REMOTE_ADDR'))
             ->setIssuedAt(time())
@@ -68,4 +64,5 @@ class JwtAuthMiddleware
 
         return $response;
     }
+
 }
