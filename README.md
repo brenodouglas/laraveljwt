@@ -13,7 +13,7 @@ or manually update your `composer.json` file
 ```json
 {
     "require": {
-        "brenodouglas/laraveljwt": "dev-master"
+        "brenodouglas/laraveljwt": "~dev1.0"
     }
 }
 ```
