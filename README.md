@@ -49,7 +49,7 @@ Route::get('foo', ['middleware' => [auth:jwt'], function()
 {
     return 'Yes I can!';
 }]);
-
+```
 
 Or within controllers:
 ```php
