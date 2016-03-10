@@ -50,17 +50,25 @@ class JwtAuthMiddleware
             return response('Unauthorized: ' . $e->getMessage(), 403);
         }
 
+        $createTimeClaim = $token->getClaim('iat');
+        $refreshTimeExpires = config('jwt.refresh_time');
+        $time = time();
 
-        $token = (new Builder())->setIssuer(config('jwt.host'))
+        if ($time < ($createTimeClaim + $refreshTimeExpires)) {
+            $response->withCookie(new Cookie("TOKEN", $token->__toString()));
+            return $response;
+        }
+
+        $newToken = (new Builder())->setIssuer(config('jwt.host'))
             ->setAudience($request->server('REMOTE_ADDR'))
-            ->setIssuedAt(time())
-            ->setNotBefore(time())
-            ->setExpiration(time() + 3600)
+            ->setIssuedAt($time)
+            ->setNotBefore($time)
+            ->setExpiration($time + 3600)
             ->set('uid', getenv('USER'))
             ->sign($signer, $key)
             ->getToken();
 
-        $response->withCookie(new Cookie("TOKEN", $token->__toString()));
+        $response->withCookie(new Cookie("TOKEN", $newToken->__toString()));
 
         return $response;
     }

@@ -11,6 +11,8 @@ return [
      */
     'expires' => 3600,
 
+    'refresh_time' => 3000,
+
     /**
      * Host se in issuer JWT
      */
