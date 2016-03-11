@@ -15,6 +15,8 @@ return [
      */
     'refresh_time' => 3000,
 
+    'not_before_time' => 0,
+
     /**
      * Host se in issuer JWT
      */
@@ -23,5 +25,13 @@ return [
     /**
      * Key for sign
      */
-    'key' => env('APP_KEY', 'MyKeySignToken!!')
+    'key' => env('APP_KEY', 'MyKeySignToken!!'),
+
+    'payload' => [
+        'iss' => true,
+        'aud' => true,
+        'iat' => true,
+        'nbf' => false,
+        'exp' => true
+    ]
 ];

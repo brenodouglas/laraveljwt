@@ -19,13 +19,22 @@ class JwtAuth
 
         $key = config('jwt.key');
         $signer = new Sha256();
-        $token = (new Builder())->setIssuer(config('jwt.host'))
-            ->setAudience($request->server('REMOTE_ADDR'))
-            ->setIssuedAt(time())
-            ->setNotBefore(time())
-            ->setExpiration(time() + config('jwt.expires'))
-            ->set('uid', $user->id)
-            ->sign($signer, $key)
+        $builder = (new Builder())->setIssuer(config('jwt.host'))
+            ->set('uid', $user->id);
+
+        if (config('jwt.payload')['aud'])
+            $builder->setAudience($request->server('REMOTE_ADDR'));
+
+        if (config('jwt.payload')['iss'])
+            $builder->setIssuedAt(time());
+
+        if (config('jwt.payload')['nbf'])
+            $builder->setNotBefore(time() + config('jwt.not_before_time'));
+
+        if (config('jwt.payload')['exp'])
+            $builder->setExpiration(time() + config('jwt.expires'));
+
+        $token = $builder->sign($signer, $key)
             ->getToken();
 
         return $token->__toString();
