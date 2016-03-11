@@ -28,10 +28,25 @@ return [
     'key' => env('APP_KEY', 'MyKeySignToken!!'),
 
     'payload' => [
+        /**
+         * Configures the issuer (iss claim)
+         */
         'iss' => true,
+        /**
+         * Configures the audience (aud claim)
+         */
         'aud' => true,
+        /**
+         * Configures the time that the token was issue (iat claim)
+         */
         'iat' => true,
+        /**
+         *  Configures the time that the token can be used (nbf claim)
+         */
         'nbf' => false,
+        /**
+         * Configures the expiration time of the token (exp claim)
+         */
         'exp' => true
     ]
 ];
