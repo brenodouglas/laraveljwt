@@ -13,7 +13,7 @@ or manually update your `composer.json` file
 ```json
 {
     "require": {
-        "brenodouglas/laraveljwt": "~dev1.0"
+        "brenodouglas/laraveljwt": "^0.1.0"
     }
 }
 ```
@@ -53,7 +53,7 @@ Route::get('foo', ['middleware' => ['authjwt'], function()
 
 Or within controllers:
 ```php
-$this->middleware('auth:jwt');
+$this->middleware('authjwt');
 ```
 
 ### 5. Auth and Facade
